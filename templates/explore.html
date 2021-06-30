@@ -1,0 +1,28 @@
+{% extends "home.html" %}
+{% block content %}
+{% load static%}
+<main class="explore">
+            <section class="people">
+                <ul class="people__list">
+                  {% for notification in notifications%}
+                    <li class="people__person">
+                        <div class="people__column">
+                            <div class="people__avatar-container">
+                                 {% if notification.sender.profile.picture %}
+            <img src="{{ notification.sender.profile.picture.url }}" alt="Placeholder image"  class="people__avatar">
+          {% else %}
+            <img src="https://bulma.io/images/placeholders/96x96.png" alt="Placeholder image"  class="people__avatar">
+        {% endif %}
+
+                            </div>
+                            <div class="people__info">
+                                <span class="people__username">{{notification.text_preview}}</span>
+                            </div>
+                        </div>
+                    </li>
+                   {% endfor %}
+                </ul>
+
+            </section>
+        </main>
+{% endblock %}

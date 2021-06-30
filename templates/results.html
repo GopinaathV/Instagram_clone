@@ -1,0 +1,46 @@
+{%extends "home.html"%}
+
+{% block content%}
+
+<ul class="container-fluid" style="padding-right: 300px;padding-left: 400px;">
+    {% for profile in profiles %}
+    <li class="card" style="display:flex;flex-direction:row;margin: 4px;padding:5px;width:450px;">
+        {% if profile.picture %}
+           <div><img class="mr-3" src="{{ profile.picture.url }}" alt="Generic placeholder image" style="width: 69px;border-radius: 50%;"></div>
+        {% else %}
+        <div><img class="mr-3" src="https://bulma.io/images/placeholders/96x96.png" alt="Generic placeholder image" style="width: 69px;border-radius: 50%;"></div>
+        {% endif %}
+    <div style="
+    position: relative;
+    left: -2px;
+    top: 22px;
+    text-decoration: none;
+    /* color: rosybrown; */
+"><a href="{% url 'profile_details' profile.username%}"><h5 class="mt-0" style="position: relative;">{{profile.username}}</h5></a></div>
+    <div style="
+    position: relative;
+    top: 22px;
+    left: 150px;
+">
+
+                            {% if profile.username in follow  %}
+                            <a href="{%url 'follow' profile.username 0 %}" class="profile__button u-fat-text">following</a>
+                            {% else %}
+                            <a href="{%url 'follow' profile.username 1 %}" class="profile__button u-fat-text">Follow</a>
+                            {% endif %}
+    </div>
+    </li>
+    {% empty %}
+    <div class="card">
+    <h2 style="
+    font-size: x-large;
+    margin: 20px;
+    position: relative;
+    left: 250px;
+">No results found!!!</h2>
+    </div>
+        {% endfor %}
+</ul>
+
+
+{% endblock %}

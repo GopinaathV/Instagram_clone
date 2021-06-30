@@ -1,0 +1,62 @@
+{% extends "home.html" %}
+{% load static%}
+  {% block content %}
+
+<main class="edit-profile" >
+            <section class="profile-form">
+                <header class="profile-form__header">
+                    <div class="profile-form__avatar-container">
+                    {% if profile.picture %}
+                    <img src="{{ profile.picture.url }}" alt="Placeholder image" class="profile-form__avatar">
+                    {% else %}
+                    <img src="https://bulma.io/images/placeholders/96x96.png" alt="Placeholder image" class="profile-form__avatar">
+                    {% endif %}
+
+                    </div>
+                    <h4 class="profile-form__title">{{profile.username}}</h4>
+                </header>
+                 <form method="post" enctype="multipart/form-data" class="edit-profile__form">
+                   {% csrf_token %}
+
+                        <div class="edit-profile__form-row">
+                        <label for="name" class="edit-profile__label">Username
+                        </label>
+                          {{ form.username }}
+                    </div>
+                        <div class="edit-profile__form-row">
+                        <label for="name" class="edit-profile__label">Profile picture
+                        </label>
+
+                          {{ form.picture }}
+                    </div>
+                        <div class="edit-profile__form-row">
+                        <label for="name" class="edit-profile__label">Bio
+                        </label>
+                          {{ form.profile_info }}
+                    </div>
+                        <div class="edit-profile__form-row">
+                        <label for="name" class="edit-profile__label">Location
+                        </label>
+                          {{ form.location }}
+                    </div>
+                        <div class="edit-profile__form-row">
+                        <label for="name" class="edit-profile__label">Phone-number
+                        </label>
+                          {{ form.phone_no }}
+                    </div>
+                     <div class="edit-profile__form-row">
+                        <label for="name" class="edit-profile__label">Email
+                        </label>
+                          {{ form.email }}
+                    </div>
+                     <div class="edit-profile__form-row">
+                        <label for="name" class="edit-profile__label">Gender
+                        </label>
+                          {{ form.gender }}
+                    </div>
+                     <input type="submit" value="Submit">
+                </form>
+
+            </section>
+        </main>
+{% endblock %}

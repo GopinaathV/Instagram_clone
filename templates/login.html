@@ -1,0 +1,39 @@
+
+
+
+{% extends "index.html" %}
+{% load static%}
+{% load bootstrap4 %}
+  {% block content %}
+
+      <div class="login__section login__sign-in">
+                    <img
+                        src="{% static 'images/logo.png'  %}"
+                        alt="Logo"
+                        title="Logo"
+                        class="login__logo"
+                    />
+                    <!-- x   -->
+<div class="container">
+    <form method="POST">
+        {% csrf_token %}
+        {% bootstrap_form form %}
+        <input type="submit" value="Login" class="btn btn-default">
+    </form>
+</div>
+                    <span class="login__divider">or</span>
+                    <a class="login__fb-link" href="#">
+                        <i class="fa fa-facebook-square fa-lg" aria-hidden="true"></i> Log in with Facebook
+                    </a>
+                </div>
+                <div class="login__section login__sign-up">
+                    <span class="login__text">
+                        Don't have an account?
+                        <a href="{% url 'accounts:signup' %}" class="login__link">
+                            Sign up
+                        </a>
+                    </span>
+                </div>
+
+
+  {% endblock %}

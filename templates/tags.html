@@ -1,0 +1,30 @@
+{%extends "home.html"%}
+
+{% block content%}
+<div class="card" style="
+    width: 1000px;
+    height: 470px;
+    margin-left: 184px;
+">
+<h1 style="
+    margin:10px;
+    text-align: center;
+    font-weight: 900;
+    font-size: xx-large;
+    text-decoration: underline;
+">#{{tags}}</h1>
+<div style="
+    display: flex;
+    flex-wrap: wrap;
+    justify-content:center;
+">
+{%  for post in posts %}
+<div  style="
+    margin: 25px 10px 10px 10px;
+">
+    <a href="{% url 'post_details' post.id %}"><img style="width: 150px;"src="{{post.picture.url}}"></a>
+</div>
+{% endfor %}
+</div>
+</div>
+{%endblock%}

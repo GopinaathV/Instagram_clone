@@ -1,0 +1,117 @@
+{% extends "home.html" %}
+{% load static%}
+  {% block content %}
+
+
+
+
+        <main class="profile-container">
+            <section class="profile">
+                <header class="profile__header">
+
+                    <div class="profile__avatar-container" style="
+    position: relative;
+    top: -22px;
+" >
+{% if profile.picture %}
+<img src="{{ profile.picture.url }}" alt="Placeholder image"  style="
+    border-radius: 50%;
+    width: 160px;
+">
+{% else %}
+<img src="https://bulma.io/images/placeholders/96x96.png" alt="Placeholder image"  style="
+    border-radius: 50%;
+    width: 160px;
+">
+{% endif %}
+
+                    </div>
+                    <div class="profile__info">
+                        <div class="profile__name">
+                            <h1 class="profile__title">{{profile.username}}</h1>
+                            <a href="{% url 'new_post' %}" class="profile__button u-fat-text">Add post</a>
+                            <a href="{% url 'edit_profile' %}" class="profile__button u-fat-text">Edit profile</a>
+                        </div>
+                        <ul class="profile__numbers">
+                            <li class="profile__posts">
+                                <span class="profile__number u-fat-text">{{user_post_count}}</span> posts
+                            </li>
+                            <li class="profile__followers">
+                                <span class="profile__number u-fat-text">{{following}}</span> followers
+                            </li>
+                            <li class="profile__following">
+                                <span class="profile__number u-fat-text">{{follower}}</span> following
+                            </li>
+                        </ul>
+                        <div class="profile__bio">
+                            <span class="profile__full-name u-fat-text"><p style="padding:3px;">{{profile.profile_info}}</p><br>{{profile.location}}</span>
+
+
+                        </div>
+                    </div>
+                </header>
+                <div>
+                    <ul class="alert alert-secondary" style="
+    display: flex;
+    justify-content: center;
+">
+                    <li class="{% if url_name == 'profile' %}is-active{% endif %}" style="
+    margin: 0px 84px 0px 0px;
+" >
+
+                        <a href="{% url 'profile'%}" style="
+    color: grey;
+        font-size: larger;
+    font-weight: bolder;
+">Post</a>
+                    </li>
+                    <hr style="
+    margin: 0px;
+    background-color: slategrey;;
+    position: relative;
+    left: -36px;
+     height: auto;
+     border: solid 0.1px slategrey;;
+">
+                    <li class="{% if url_name == 'profilefavorites' %}is-active{% endif %}">
+                        <a href="{% url 'profile_fav'%}" style="
+    color: grey;
+        font-size: larger;
+    font-weight: bolder;
+">Saved</a>
+                    </li>
+
+
+                     </ul>
+                </div>
+
+
+                <div class="profile__pictures card">
+                    {% for post in posts %}
+
+                    <a href="{% url 'post_details' post.id %}" class="profile-picture">
+                        <img
+                            src="{{post.picture.url}}"
+                            class="profile-picture__picture"
+                            style="
+    width: 215px;
+"
+                        />
+                        <div class="profile-picture__overlay">
+                            <span class="profile-picture__number">
+                                <i class="fa fa-heart"></i> {{post.likes}}
+                            </span>
+                        </div>
+                    </a>
+                     {% empty %}
+                            <h2 style="
+    font-size: x-large;
+    margin: 20px;
+    position: relative;
+    left: 295px;
+">No posts!!!</h2>
+                     {% endfor %}
+                </div>
+            </section>
+        </main>
+ {% endblock %}

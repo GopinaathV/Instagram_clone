@@ -1,0 +1,74 @@
+{% extends 'home.html' %}
+
+{% load static %}
+
+{% block content %}
+
+ <div class="columns is-mobile" style="
+    /* float: left; */
+    text-align: center;
+">
+  <div class="column is-offset-one-fifth">
+
+<div class="field has-addons">
+<form>
+  <div class="control">
+    <h2 style="
+    padding: 10px;
+">Search for the user</h2>
+    <input class="input is-large" name="q" type="text" placeholder="Search users..." value="{{ request.GET.q }}" style="
+    padding: 5px;
+" >
+  </div>
+  <div class="control">
+  	<button type="submit" class="profile__button u-fat-text">Search</button>
+  </div>
+  </form>
+</div>
+
+
+</div>
+</div>
+
+<div class="column is-one-quarter">
+
+{% for user in users %}
+<div class="box" style="border: 2px solid darkgray;padding: 10px;margin: 10px;border-radius: 10px;">
+  <article class="media">
+    <div class="media-left">
+      <figure class="image is-64x64">
+          {% if user.profile.picture %}
+            <img src="{{ user.profile.picture.url }}" alt="Placeholder image" style="
+    width: 100px;
+    margin: 10px;
+    border-radius: 50%;
+">
+          {% else %}
+            <img src="https://bulma.io/images/placeholders/96x96.png" alt="Placeholder image" style="
+    width: 100px;
+    margin: 10px;
+">
+          {% endif %}
+      </figure>
+    </div>
+    <div class="media-content">
+      <div class="content">
+        <p style="
+    float: left;
+">
+          <strong style="
+    margin: 21px;
+    font-size: 37px;
+">{{ user.username }}</strong>
+        </p>
+        <a href="{% url 'chat:newconversation' user.username %}" class="profile__button u-fat-text">Send a message!</a>
+      </div>
+    </div>
+  </article>
+</div>
+{% endfor %}
+	
+
+</div>
+
+{% endblock %}

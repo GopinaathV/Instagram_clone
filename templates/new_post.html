@@ -1,0 +1,46 @@
+{% extends 'home.html'%}
+{% block content%}
+
+<main class="edit-profile">
+
+<section class="profile-form">
+                <header class="profile-form__header">
+                    <div class="profile-form__avatar-container">
+                     <h2 style="font-weight: 700;font-size: large;position: relative;left: 14px;text-decoration: underline;">Newpost</h2>
+                    </div>
+                    <h4 class="profile-form__title">{{profile.username}}</h4>
+                </header>
+                 <form method="post" enctype="multipart/form-data" class="edit-profile__form">
+                   {% csrf_token %}
+                     <div class="edit-profile__form-row">
+                        <label for="name" class="edit-profile__label">Post
+                        </label>
+                          {{ form.picture }}
+                    </div>
+
+                       <div class="edit-profile__form-row">
+                        <label for="bio" class="edit-profile__label">
+                            Caption
+                        </label>
+                         {{ form.caption }}
+                    </div>
+
+
+                    <div class="edit-profile__form-row">
+                        <label  class="edit-profile__label">
+                            Tags
+                        </label>
+                         {{ form.tags }}
+                    </div>
+
+
+                    <div class="edit-profile__form-row">
+                        <label class="edit-profile__label"></label>
+                        <input type="submit" value="Submit">
+                    </div>
+                </form>
+
+            </section>
+
+</main>
+{% endblock %}
