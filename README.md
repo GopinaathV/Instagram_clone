@@ -3,6 +3,10 @@ Basic Instagram clone website built in django web framework using Python.
 # Prerequisites
 pip install -r requirements.txt
 # Screenshots
+![alt text](https://github.com/GopinaathV/Instagram_clone/blob/main/Screenshots/Screenshot%20(81).png)
+
+![alt text](https://github.com/GopinaathV/Instagram_clone/blob/main/Screenshots/Screenshot%20(82).png)
+
 ![alt text](https://github.com/GopinaathV/Instagram_clone/blob/main/Screenshots/Screenshot%20(71).png)
 
 ![alt text](https://github.com/GopinaathV/Instagram_clone/blob/main/Screenshots/Screenshot%20(72).png)
